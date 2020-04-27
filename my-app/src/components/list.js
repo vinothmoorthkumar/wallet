@@ -1,11 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/Inbox';
-import Grid from "@material-ui/core/Grid";
 import { withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 
@@ -22,7 +16,7 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import Button from '@material-ui/core/Button';
 import '../style.css';
 import Icon from '@material-ui/core/Icon';
-
+import { Link } from 'react-router-dom';
 // const useStyles = makeStyles((theme) => ({
 //     root: {
 //         width: '100%',
@@ -85,7 +79,7 @@ class Lists extends React.Component {
             <div>
                 <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
                     <Box p={1}>
-                        <Button> 
+                        <Button component={Link} to={'/add_edit'}>
                             <Icon style={{ fontSize: 40 }}>add_circle</Icon>
                         </Button>
                     </Box>
@@ -95,11 +89,10 @@ class Lists extends React.Component {
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Dessert (100g serving)</TableCell>
-                                <TableCell align="right">Calories</TableCell>
-                                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                                <TableCell>Amount</TableCell>
+                                <TableCell align="right">Description</TableCell>
+                                <TableCell align="right">Type</TableCell>
+                                <TableCell align="right">Action</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -108,9 +101,8 @@ class Lists extends React.Component {
                                     <TableCell component="th" scope="row">
                                         {row.name}
                                     </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
+                                    <TableCell align="right">sdfsdfd dsfsd</TableCell>
+                                    <TableCell align="right">30</TableCell>
                                     <TableCell align="right">
                                         <IconButton aria-label="delete">
                                             <EditRoundedIcon />

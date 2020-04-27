@@ -21,22 +21,12 @@ class App extends Component {
       <Router>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="title" color="inherit">
+            <Typography color="inherit">
               Wallet Tracker
                 </Typography>
           </Toolbar>
         </AppBar>
         <div className="App">
-          {/* <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header> */}
-          {/* <div className="menu">
-              <ul>
-                <li> <Link to="/">List</Link> </li>
-                <li> <Link to="/add_edit">addoredit</Link> </li>
-              </ul>
-          </div> */}
           <div className="App-intro">
             <Switch>
               <Route exact path="/" component={Lists} />
