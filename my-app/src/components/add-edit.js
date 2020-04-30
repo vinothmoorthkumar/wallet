@@ -4,19 +4,22 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const styles = {
   root: {
-    '& > *': {
+    '& .MuiTextField-root': {
       margin: 10,
-      width: '25ch',
+      width: 300,
     },
   },
 };
 
 const validateForm = (errors) => {
   let valid = true;
-  console.log('errors',errors)
+  console.log('errors', errors)
   Object.values(errors).forEach(
     (val) => val.result && (valid = false)
   );
@@ -50,24 +53,24 @@ class addEdit extends React.Component {
     switch (name) {
       case 'name':
         errors.name.message = value.length < 5 ? 'Full Name must be 5 characters long!' : false;
-        console.log('test',value.length < 5)
+        console.log('test', value.length < 5)
         errors.name.result = errors.name.message ? true : false
         break;
       case 'description':
-          errors.description.message = value.length < 5 ? 'Description must be 5 characters long!' : false;
-          errors.description.result = errors.description.message ? true : false
-          break;
+        errors.description.message = value.length < 5 ? 'Description must be 5 characters long!' : false;
+        errors.description.result = errors.description.message ? true : false
+        break;
       default:
         break;
     }
-    this.setState({errors, [name]: value});
+    this.setState({ errors, [name]: value });
   }
 
   mySubmitHandler = (event) => {
     event.preventDefault();
-    if(validateForm(this.state.errors)) {
+    if (validateForm(this.state.errors)) {
       console.info('Valid Form')
-    }else{
+    } else {
       console.error('Invalid Form')
     }
   }
@@ -77,26 +80,38 @@ class addEdit extends React.Component {
     return (
       <div>
         <form onSubmit={this.mySubmitHandler} className={classes.root} autoComplete="off">
-          <TextField
-            error={this.state.errors.name.result}
-            id="outlined-error-helper-text"
-            label="Name"
-            name="name"
-            helperText={this.state.errors.name.message}
-            variant="outlined"
-            onChange={this.myChangeHandler}
-          />
-          <TextField
-            error={this.state.errors.description.result}
-            id="outlined-error-helper-text"
-            label="Description"
-            name="description"
-            helperText="Incorrect entry."
-            variant="outlined"
-            onChange={this.myChangeHandler}
-          />
+          <div>
+            <RadioGroup aria-label="gender" name="gender1">
+              <FormControlLabel value="female" control={<Radio />} label="Female" />
+              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel value="other" control={<Radio />} label="Other" />
+              <FormControlLabel value="disabled" disabled control={<Radio />} label="(Disabled option)" />
+            </RadioGroup>
+          </div>
+          <div>
+            <TextField
+              error={this.state.errors.name.result}
+              id="outlined-error-helper-text"
+              label="Name"
+              name="name"
+              helperText={this.state.errors.name.message}
+              variant="outlined"
+              onChange={this.myChangeHandler}
+            />
+          </div>
+          <div>
+            <TextField
+              error={this.state.errors.description.result}
+              id="outlined-error-helper-text"
+              label="Description"
+              name="description"
+              helperText={this.state.errors.description.message}
+              variant="outlined"
+              onChange={this.myChangeHandler}
+            />
+          </div>
           <Button type="submit" variant="contained" color="primary">
-            Primary
+            Save
           </Button>
         </form>
       </div>
